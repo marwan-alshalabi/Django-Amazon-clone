@@ -3,10 +3,11 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
 
-FLAG_CHOICES = ()
-('New','New')
-('Sale','Sale')
-('Feature','Feature')
+FLAG_CHOICES = (
+    ('New','New'),
+    ('Sale','Sale'),
+    ('Feature','Feature'),
+)
 
 
 class Product(models.Model):

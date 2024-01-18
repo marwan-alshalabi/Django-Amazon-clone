@@ -15,7 +15,7 @@ class Product(models.Model):
     image = models.ImageField(_('Image'),upload_to='products')
     price = models.FloatField(_('Price'))
     subtitle = models.TextField(_('Subtittle'),max_length=500)
-    description = models.TextField(_('description'),max_length=50000)
+    description = models.TextField(_('description'),max_length=50000)    
     sku = models.IntegerField(_('SKU'))
     video = models.URLField(_('Video'),null=True,blank=True)
     quantity = models.IntegerField(_('Quantity'))

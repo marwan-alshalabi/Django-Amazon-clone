@@ -8,6 +8,8 @@ class ProductImagesInline(admin.TabularInline):
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['name','flag','price']
+    list_filter = ['flag','price','quantity']
+    search_fields = ['name','subtitle','description']
     inlines = [ProductImagesInline]
 
 admin.site.register(Product,ProductAdmin)

@@ -45,7 +45,10 @@
 
         <!-- CUSTOM -->
         <link rel="stylesheet" href="{% static 'en/css/main.css' %}">
-        <link rel="stylesheet" href="{% static 'en/css/index.css' %}">
+
+        {% block css %}
+            <link rel="stylesheet" href="{% static 'en/css/index.css' %}">
+        {% endblock css %}
         
         <!--=====================================
                     CSS LINK PART END
@@ -55,7 +58,7 @@
         <div class="backdrop"></div>
         <a class="backtop fas fa-arrow-up" href="#"></a>
         
-        <!--=====================================
+        <!--=====================================  
                     HEADER TOP PART START
         =======================================-->
         <div class="header-top">

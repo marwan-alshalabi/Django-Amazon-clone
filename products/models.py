@@ -60,3 +60,7 @@ class Review(models.Model):
    reviews = models.TextField(max_length=300)
    rate = models.IntegerField()
    created_at = models.DateTimeField(timezone.now)
+
+
+   def __str__(self):
+       return str(self.user)

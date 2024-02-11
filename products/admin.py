@@ -12,6 +12,11 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ['name','subtitle','description']
     inlines = [ProductImagesInline]
 
+
+class ReviewAdmin(admin.ModelAdmin):
+    list_display=['user','product','rate','create_at']
+    list_filter = ['create_at','rate']
+
 admin.site.register(Product,ProductAdmin)
 admin.site.register(Brand)
-admin.site.register(Review)
+admin.site.register(Review,ReviewAdmin)

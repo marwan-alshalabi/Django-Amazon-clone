@@ -7,14 +7,18 @@ from .models import Product
 
 
 
-@api_view(["GET"])
-def product_list_api(request):
-    products = Product.objects.all() 
-    data = Productserializers(products,many=True).data 
-    return Response({'products':data})
+# @api_view(["GET"])
+# def product_list_api(request):
+#     products = Product.objects.all() 
+#     data = Productserializers(products,many=True).data 
+#     return Response({'products':data})
 
 
 class ProductListAPI(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = Productserializers
-    
+
+
+class ProductDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Product.objects.all()
+    serializer_class = Productserializers

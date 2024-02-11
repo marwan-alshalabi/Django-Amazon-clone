@@ -1,7 +1,8 @@
 - products :
-    - template
+      
     - Pagination
     - add review
+    - dummy data
     - API
     - queryset api
 

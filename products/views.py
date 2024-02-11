@@ -1,9 +1,8 @@
-from typing import Any
-from django.db.models.query import QuerySet
-from django.shortcuts import render
+from django.shortcuts import render ,redirect
 from django.views.generic import ListView , DetailView 
 
 from .models import Product , Brand , Review , ProductImages
+from .forms import ReviewForm
 
 def  product_list(requset):
     products =  Product.objects.all()
@@ -43,7 +42,21 @@ class BrandDetail(ListView):
         queryset = queryset.filter(brand=brand)
         return queryset 
     
-    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context ['brand'] = Brand.objects.get(slug=self.kwargs['slug'])
         return context
+    
+
+def add_product_review(request,slug):
+    product = Product.objects.get(slug=slug)
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            myform = form.save(commit=False)
+            myform.user =  request.user
+            myform.product = product
+            myform.save()
+
+            return redirect(f'/products/{slug}')

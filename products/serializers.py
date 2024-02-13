@@ -10,7 +10,7 @@ class Brandserializers(serializers.ModelSerializer):
 
 
 class Productserializers(serializers.ModelSerializer):
-    brand = Brandserializers ()
+    brand = serializers.RelatedField()
     class Meta :
         model = Product
         fields = '__all__'

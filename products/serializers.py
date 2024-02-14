@@ -3,9 +3,14 @@ from .models import Product , Brand , Review , ProductImages
 
 
 class BrandListSerializers(serializers.ModelSerializer):
+    products_count = serializers.SerializerMethodField()
     class Meta :
         model = Brand
         fields = '__all__'
+
+    def get_products_count(self,object) :
+        count = object.product_brand.all().count()
+        return count
 
 
 
@@ -47,6 +52,15 @@ class ProductDetailSerializers(serializers.ModelSerializer):
 
 class BrandDetailSerializers(serializers.ModelSerializer):
     product_brand = ProductListSerializers(many=True)
+    products_count = serializers.SerializerMethodField()
     class Meta :
         model = Brand
         fields = '__all__'
+    
+    
+    def get_products_count(self,object) :
+        count = object.product_brand.all().count()
+        return count
+
+
+    

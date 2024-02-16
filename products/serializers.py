@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import Product , Brand , Review , ProductImages
 
 
+
 class BrandListSerializers(serializers.ModelSerializer):
     products_count = serializers.SerializerMethodField()
     class Meta :

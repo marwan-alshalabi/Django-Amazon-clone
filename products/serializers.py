@@ -33,9 +33,14 @@ class ReviewSerializers(serializers.ModelSerializer):
 
 class ProductListSerializers(serializers.ModelSerializer):
     brand = serializers.StringRelatedField()
+    review_count = serializers.SerializerMethodField()
     class Meta :
         model = Product
         fields = '__all__' 
+
+    def get_review_count (self, object):
+        review_counts = object.review_product.all().count()
+        return review_counts
 
 
 
@@ -43,10 +48,15 @@ class ProductDetailSerializers(serializers.ModelSerializer):
     brand = serializers.StringRelatedField()
     product_images = ProductImagesSerializers(many=True)
     review_product = ReviewSerializers(many=True)
+    review_count = serializers.SerializerMethodField()
 
     class Meta :
         model = Product
-        fields = '__all__' 
+        fields = '__all__'
+
+    def get_review_count (self, object):
+        review_counts = object.review_product.all().count()
+        return review_counts
 
 
 

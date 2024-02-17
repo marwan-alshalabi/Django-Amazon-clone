@@ -9,6 +9,7 @@ from rest_framework import filters
 from .serializers import ProductDetailSerializers, ProductListSerializers , BrandListSerializers, BrandDetailSerializers
 from .models import Product , Brand
 from .mypagination import CustomPagination
+from .myfilter import CustomProductFilter
 
 
 # @api_view(["GET"])
@@ -21,10 +22,11 @@ from .mypagination import CustomPagination
 class ProductListAPI(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductListSerializers
-    filter_backends = [DjangoFilterBackend,filters.SearchFilter,filters.OrderingFilter]
-    filterset_fields = ['flag', 'brand', 'quantity']
-    search_fields = ['name', 'subtitle','description']
+    filter_backends = [DjangoFilterBackend,filters.OrderingFilter]
+    # filterset_fields = ['flag', 'brand', 'quantity']
+    # search_fields = ['name', 'subtitle','description']
     ordering_fields = ['price', 'quantity', 'name']
+    filterset_class = CustomProductFilter
 
 
 

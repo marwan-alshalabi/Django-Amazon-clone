@@ -81,6 +81,7 @@ class ProductDetail(DetailView):
 
 class BrandList(ListView):
     model = Brand
+    paginate_by = 20
 
 
 class BrandDetail(ListView):

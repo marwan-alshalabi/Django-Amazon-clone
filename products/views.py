@@ -1,12 +1,62 @@
 from django.shortcuts import render ,redirect
 from django.views.generic import ListView , DetailView 
 
+from django.db.models import Q 
+
 from .models import Product , Brand , Review , ProductImages
 from .forms import ReviewForm
 
 def  debug(requset):
-    products =  Product.objects.all()
-    return render(requset,'products/debug.html',{'data':products})
+    # data = Product.objects.all()
+
+    # data = Product.objects.filter(price__gt=98)
+    # data = Product.objects.filter(price__gte=98)
+    # data = Product.objects.filter(price__lt=22)
+    # data = Product.objects.filter(price__lte=22)
+    # data = Product.objects.filter(price__range=(21,22))
+
+    # data = Product.objects.filter(name__contains='Jeffrey')
+    # data = Product.objects.filter(name__startswith='Jeffrey')
+    # data = Product.objects.filter(name__endswith='Garcia')
+
+    # data = Product.objects.filter(name__contains='Jeffrey',price__gt=50)
+    
+    # data = Product.objects.filter(
+    #     Q(name__contains='Jeffrey') &
+    #     Q(price__gt=90)
+    #       )
+
+    # data = Product.objects.filter(
+    #     Q(name__contains='Jeffrey') |
+    #     Q(price__gt=50)
+    #       )
+    
+    # data = Product.objects.filter(
+    #     Q(name__contains='Jeffrey') |
+    #     ~Q(price__gt=22)
+    #       )
+
+    # data = Product.objects.order_by('price')
+    # data = Product.objects.order_by('-price')
+    
+    # data = Product.objects.all()[:5]
+    # data = Product.objects.earliest('price')
+    # data = Product.objects.latest('price')
+    # print(data)
+
+    # django queries are lazy
+    # data = Product.objects.filter(name__contains='Jeffrey').order_by('-price')      # merg queries (SQl)
+
+    # data = Product.objects.filter(name__contains='Jeffrey')
+    # data = data.order_by('-price')
+
+    # data = Product.objects.all()
+    # data = Product.objects.values('name')
+    # data = Product.objects.values_list('name')
+    # data = Product.objects.only('name')
+    data = Product.objects.defer('slug','description')
+
+    return render(requset,'products/debug.html',{'data':data})
 
 
 class ProductList(ListView):

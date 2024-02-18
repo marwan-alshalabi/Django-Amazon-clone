@@ -4,9 +4,9 @@ from django.views.generic import ListView , DetailView
 from .models import Product , Brand , Review , ProductImages
 from .forms import ReviewForm
 
-def  product_list(requset):
+def  debug(requset):
     products =  Product.objects.all()
-    return render(requset,'list.html',{'data':products})
+    return render(requset,'products/debug.html',{'data':products})
 
 
 class ProductList(ListView):

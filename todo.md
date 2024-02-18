@@ -1,7 +1,5 @@
-- products :
-      
+- products : 
     - Pagination  
-    - API
     - queryset api
 
 - home :

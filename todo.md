@@ -1,9 +1,6 @@
 - products : 
     - queryset api
 
-- home :
-    - add home
-
 - orders :
     - orders
     - cart

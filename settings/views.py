@@ -14,6 +14,6 @@ def  home (request):
         'sale': sale,
         'new' : new,
         'feature' : feature,
-        'review' : review
+        'review' : review,
         
         })

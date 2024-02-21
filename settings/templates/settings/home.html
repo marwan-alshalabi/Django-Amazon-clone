@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% block body %}
 
+<style>
+    .myactive::before{
+        color: #ffab10;
+    }
+</style>
 
 
 
@@ -1851,12 +1856,13 @@
                                 <i class="fas fa-quote-left"></i>
                                 <p>{{item.review}}</p>
                                 <h5>{{item.user}}</h5>
+                                <p>{{item.rate}}</p>
                                 <ul>
-                                    <li class="fas fa-star"></li>
-                                    <li class="fas fa-star"></li>
-                                    <li class="fas fa-star"></li>
-                                    <li class="fas fa-star"></li>
-                                    <li class="fas fa-star"></li>
+                                    <li class="fas fa-star {% if item.rate > 0 %} myactive{% endif %}"></li>
+                                    <li class="fas fa-star {% if item.rate > 1 %} myactive{% endif %}"></li>
+                                    <li class="fas fa-star {% if item.rate > 2 %} myactive{% endif %}"></li>
+                                    <li class="fas fa-star {% if item.rate > 3 %} myactive{% endif %}"></li>
+                                    <li class="fas fa-star {% if item.rate > 4 %} myactive{% endif %}"></li>
                                 </ul>
                                 <img src="images/avatar/01.jpg" alt="testimonial">
                             </div>

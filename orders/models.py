@@ -32,7 +32,7 @@ class Order(models.Model):
 
 class OrderDetail(models.Model):
     order = models.ForeignKey(Order,related_name='order_detail',on_delete=models.CASCADE)
-    Product = models.ForeignKey(Product,related_name='order_product',on_delete=models.SET_NULL,blank=True,null=True)
+    product = models.ForeignKey(Order,related_name='order_product',on_delete=models.SET_NULL,blank=True,null=True)
     quantity = models.IntegerField()
     price = models.FloatField()
     total = models.FloatField()
@@ -58,7 +58,7 @@ class Cart(models.Model):
 
 class CartDetail(models.Model):
     cart = models.ForeignKey(Cart,related_name='cart_detail',on_delete=models.CASCADE)
-    product = models.ForeignKey(Order,related_name='cart_product',on_delete=models.SET_NULL,blank=True,null=True)
+    product = models.ForeignKey(Product,related_name='cart_product',on_delete=models.SET_NULL,blank=True,null=True)
     quantity = models.IntegerField()
     total = models.FloatField()
 

@@ -108,5 +108,5 @@ Developers can use this project as a starting point for building their own e-com
 - Bootstrap: Front-end framework for responsive design.
 - HTML/CSS: Markup and styling for web pages.
 
-
+Feel free to reach out to the project owner (Marwan Al Shalabi) for any questions or collaboration opportunities.
 

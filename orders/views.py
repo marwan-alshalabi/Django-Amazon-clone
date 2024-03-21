@@ -1,10 +1,12 @@
 from django.shortcuts import render , redirect
 from .models import Cart , CartDetail
 from products.models import Product
+from settings.models import DeliveryFee
+from .models import Order , OrderDetail , Cart , CartDetail , Coupon 
 
 
 def order_list(request):
-
+    data = Order.objects.filter(user=request.user)
     return render(request,'orders/orders.html',{})
 
 
@@ -12,7 +14,21 @@ def order_list(request):
 def checkout(request):
     # review order ,apply coupon
 
-    return render(request,'orders/checkout.html',{})
+    cart = Cart.objects.get(user=request.user , status='InProgress')
+    cart_detail = CartDetail.objects.filter(cart=cart)
+    delivery_fee = DeliveryFee.objects.last().fee
+    discount = 0
+    sub_total = cart.cart_total()
+    total = sub_total + delivery_fee
+
+    return render(request,'orders/checkout.html',{
+        'cart_detail': cart_detail ,
+        'delivery_fee': delivery_fee ,
+        'discount': discount ,
+        'sub_total': sub_total , 
+        'total': total ,
+
+    })
 
 
 def process_payment(request):

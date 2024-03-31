@@ -2,9 +2,6 @@
     - queryset api
 
 - orders :
-    - orders
-    - cart
-    - checkout
     - payment
     - coupons
     - API orders
